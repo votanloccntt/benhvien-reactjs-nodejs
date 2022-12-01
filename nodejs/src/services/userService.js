@@ -13,7 +13,7 @@ let handleUserLogin = (email, password) => {
           raw: true,
         });
         if (user) {
-          let check = await bcrypt.compareSync(password, user.password);
+          let check = bcrypt.compareSync(password, user.password);
           if (check) {
             userData.errCode = 0;
             userData.errMessage = "OK";
