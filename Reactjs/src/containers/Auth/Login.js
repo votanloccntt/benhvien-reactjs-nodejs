@@ -108,7 +108,7 @@ class Login extends Component {
               <span className="text-other-login">Or Login with:</span>
               <div className="col-12 social-login">
                 <i className="fab fa-google google"></i>
-                <i class="fab fa-facebook-f facebook"></i>
+                <i className="fab fa-facebook-f facebook"></i>
               </div>
             </div>
           </div>

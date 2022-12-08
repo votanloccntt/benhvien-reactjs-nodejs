@@ -96,25 +96,26 @@ let createNewUser = (data) => {
       if (check === true) {
         resolve({
           errCode: 1,
-          message:
+          errMessage:
             "Your email address is already,please try another email address",
         });
+      } else {
+        let hashPasswordFromcrypt = await hashUserPassword(data.password);
+        await db.User.create({
+          email: data.email,
+          password: hashPasswordFromcrypt,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          phonenumber: data.phonenumber,
+          gender: data.gender === "1" ? true : false,
+          roleId: data.roleId,
+        });
+        resolve({
+          errCode: 0,
+          message: "OK",
+        });
       }
-      let hashPasswordFromcrypt = await hashUserPassword(data.password);
-      await db.User.create({
-        email: data.email,
-        password: hashPasswordFromcrypt,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        address: data.address,
-        phonenumber: data.phonenumber,
-        gender: data.gender === "1" ? true : false,
-        roleId: data.roleId,
-      });
-      resolve({
-        errCode: 0,
-        message: "OK",
-      });
     } catch (e) {
       reject(e);
     }
